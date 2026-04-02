@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="min-w-full">
+  <div class="border border-table-line overflow-x-auto [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-thumb]:rounded-none [&::-webkit-scrollbar-track]:bg-scrollbar-track [&::-webkit-scrollbar-thumb]:bg-scrollbar-thumb">
+    <table class="min-w-full divide-y divide-table-line">
+        {% for hodim in hamma_hodimlar %}
+        <thead>
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">first_name</th>
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">last_name</th>
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">phone_number</th>
+                    <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-muted-foreground-1 uppercase">profession</th>
+                    <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-muted-foreground-1 uppercase">EDIT</th>
+                </tr>
+
+        </thead>
+        <tbody class="divide-y divide-table-line">
+
+
+            <tr">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground">{{hodim.first_name}}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">{{hodim.last_name}}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">{{hodim.phone_number}}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">{{hodim.profession}}</td>
+                
+                <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                    <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg text-primary hover:text-primary-hover focus:outline-hidden focus:text-primary-focus disabled:opacity-50 disabled:pointer-events-none">Delete</button>
+                </td>
+            </tr>
+            
+            
+        </tbody>
+    {% endfor %}
+    </table>
+  </div>
+</div>
+    
+{% endblock content %}
+

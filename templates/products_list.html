@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="min-w-full">
+  <div class="border border-table-line overflow-x-auto [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-thumb]:rounded-none [&::-webkit-scrollbar-track]:bg-scrollbar-track [&::-webkit-scrollbar-thumb]:bg-scrollbar-thumb">
+    <table class="min-w-full divide-y divide-table-line">
+        {% for product in products_list %}
+      <thead>
+            <tr>
+            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">Name</th>
+            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">Category</th>
+            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">Unit</th>
+            <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-muted-foreground-1 uppercase">Amount</th>
+            <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-muted-foreground-1 uppercase">EDIT</th>
+            </tr>
+
+      </thead>
+      <tbody class="divide-y divide-table-line">
+
+
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground">{{product.name}}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">
+            {% for cat in product.category.all %}
+                {{cat.name}}
+              
+            {% endfor %}
+
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">{{product.unit}}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">{{product.amount}}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+            <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg text-primary hover:text-primary-hover focus:outline-hidden focus:text-primary-focus disabled:opacity-50 disabled:pointer-events-none">Delete</button>
+          </td>
+        </tr>
+        
+        
+    </tbody>
+    {% endfor %}
+    </table>
+  </div>
+</div>
+    
+{% endblock content %}
+
