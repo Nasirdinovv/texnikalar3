@@ -1,5 +1,7 @@
-pyca
+venv/
 env/
-pycache/
 __pycache__/
-*.pyc
+*.py[cod]
+.env
+db.sqlite3
+.vscode/
