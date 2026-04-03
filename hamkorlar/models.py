@@ -5,7 +5,7 @@ PARTNER_TYPE = [
     ('T', "Ta'minotchi"),
     ('M', "Mijoz"),
 ]
-werwer
+
 class Partner(models.Model):
     name = models.CharField(max_length=25)
     phone_number = models.CharField(max_length=15)
