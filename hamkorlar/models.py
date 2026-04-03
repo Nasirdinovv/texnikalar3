@@ -6,8 +6,6 @@ PARTNER_TYPE = [
     ('M', "Mijoz"),
 ]
 
-
-
 class Partner(models.Model):
     name = models.CharField(max_length=25)
     phone_number = models.CharField(max_length=15)
