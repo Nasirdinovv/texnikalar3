@@ -21,7 +21,9 @@
 
 
         <tr>
-          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground">{{product.name}}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground">
+            <a href="{% url 'product_detail' product.id %}">{{product.name}}</a>
+          </td>
           <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">
             {% for cat in product.category.all %}
                 {{cat.name}}

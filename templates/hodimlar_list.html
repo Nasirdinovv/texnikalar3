@@ -20,8 +20,10 @@
         <tbody class="divide-y divide-table-line">
 
 
-            <tr">
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground">{{hodim.first_name}}</td>
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground">
+                    <a href="{% url 'hr_detail' hodim.id %}">{{hodim.first_name}}</a>
+                </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">{{hodim.last_name}}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">{{hodim.phone_number}}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">{{hodim.profession}}</td>
