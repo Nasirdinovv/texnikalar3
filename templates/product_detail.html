@@ -46,4 +46,42 @@
         </div>
     </div>
 </div>
+
+
+<div class="min-w-full">
+  <div class="border border-table-line overflow-x-auto [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-thumb]:rounded-none [&::-webkit-scrollbar-track]:bg-scrollbar-track [&::-webkit-scrollbar-thumb]:bg-scrollbar-thumb">
+    <table class="min-w-full divide-y divide-table-line">
+        <thead>
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">reciewer</th>
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">amount</th>
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">price</th>
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">date</th>
+                    <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-muted-foreground-1 uppercase">EDIT</th>
+                </tr>
+
+        </thead>
+        <tbody class="divide-y divide-table-line">
+        {% for product_in in product.products_in.all %}
+
+
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground">{{product_in.reciewer}}</a>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">{{product_in.amount}}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">{{product_in.price}}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">{{product_in.date}}</td>
+
+                <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                    <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg text-primary hover:text-primary-hover focus:outline-hidden focus:text-primary-focus disabled:opacity-50 disabled:pointer-events-none">Delete</button>
+                </td>
+            </tr>
+            
+            
+        </tbody>
+    {% endfor %}
+    </table>
+  </div>
+</div>
+
 {% endblock %}
