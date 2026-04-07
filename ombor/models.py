@@ -12,6 +12,12 @@ class Product(models.Model):
     category = models.ManyToManyField(to='Category', related_name='products')
     unit = models.CharField(choices=UNITS, default='pieace')
     amount = models.IntegerField()
+    
+    def __str__(self):
+        return f"{self.name}"
 
 class Category(models.Model):
     name = models.CharField(max_length=25)
+    
+    def __str__(self):
+        return f"{self.name}"

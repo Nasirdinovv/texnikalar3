@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'home',
     'hr',
     'ombor',
+    'hamkorlar',
     'tailwind',
     'theme',
 

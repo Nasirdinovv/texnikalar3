@@ -4,84 +4,101 @@
 {% block title %}{{ product.name }}{% endblock %}
 
 {% block content %}
-<div class="max-w-4xl mx-auto bg-gray-800 rounded-lg shadow-lg p-8">
-    <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
-        <!-- Product Image -->
-        <div class="shrink-0">
-            {% if product.image %}
-                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-80 h-80 object-cover rounded-lg shadow-md">
-            {% else %}
-                <div class="w-80 h-80 bg-gray-700 rounded-lg flex items-center justify-center text-gray-400">
-                    <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                    </svg>
-                </div>
-            {% endif %}
-        </div>
+<div class="max-w-6xl mx-auto space-y-8">
+    <div class="bg-gray-800 rounded-xl shadow-2xl overflow-hidden border border-gray-700">
+        <div class="p-8 flex flex-col md:flex-row items-center md:items-start gap-8">
+            <div class="shrink-0 group">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-64 h-64 object-cover rounded-lg shadow-lg border-2 border-gray-700 group-hover:border-blue-500 transition-colors">
+                {% else %}
+                    <div class="w-64 h-64 bg-gray-700 rounded-lg flex flex-col items-center justify-center text-gray-500 border-2 border-dashed border-gray-600">
+                        <svg class="w-16 h-16 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span class="text-xs uppercase tracking-wider">Rasm mavjud emas</span>
+                    </div>
+                {% endif %}
+            </div>
 
-        <!-- Product Details -->
-        <div class="flex-1 text-center md:text-left">
-            <h1c class="text-3xl font-bold text-white mb-4">{{ product.name }}</h1>
-            
-            <div class="space-y-3 text-gray-300">
+            <div class="flex-1 space-y-6">
                 <div>
-                    <span class="font-semibold text-gray-200">Kategoriyalar:</span>
-                    <div class="flex flex-wrap gap-2 mt-1">
+                    <h1 class="text-4xl font-extrabold text-white tracking-tight">{{ product.name }}</h1>
+                    <div class="flex flex-wrap gap-2 mt-3">
                         {% for category in product.category.all %}
-                            <span class="px-3 py-1 bg-gray-700 text-gray-200 rounded-full text-sm">{{ category.name }}</span>
+                            <span class="px-3 py-1 bg-blue-900/30 text-blue-400 border border-blue-800 rounded-full text-xs font-semibold uppercase">
+                                type: {{ category.name }}
+                            </span>
                         {% endfor %}
                     </div>
                 </div>
                 
-                <div>
-                    <span class="font-semibold text-gray-200">Birlik:</span>
-                    <span class="ml-2">{{ product.get_unit_display }}</span>
-                </div>
-                
-                <div>
-                    <span class="font-semibold text-gray-200">Miqdor:</span>
-                    <span class="ml-2">{{ product.amount }}</span>
+                <div class="grid grid-cols-2 gap-4 border-t border-gray-700 pt-6">
+                    <div>
+                        <p class="text-sm text-gray-400 uppercase font-bold tracking-wider">O'lchov birligi</p>
+                        <p class="text-xl text-gray-100">{{ product.get_unit_display }}</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-400 uppercase font-bold tracking-wider">Joriy qoldiq</p>
+                        <p class="text-xl text-emerald-400 font-mono">{{ product.amount }}</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="bg-gray-800 rounded-xl shadow-2xl border border-gray-700 overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-700 bg-gray-800/50">
+            <h2 class="text-lg font-semibold text-white">Harakatlar tarixi (Kirim-Chiqim)</h2>
+        </div>
+        
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-700">
+                <thead class="bg-gray-900/50">
+                    <tr>
+                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-400 uppercase">Turi</th>
+                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-400 uppercase">Hamkor (Reviewer/Customer)</th>
+                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-400 uppercase">Miqdor</th>
+                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-400 uppercase">Narxi (Donasi)</th>
+                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-400 uppercase">Sana</th>
+                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-400 uppercase">Umumiy Summa</th>
+                        <th class="px-6 py-4 text-right text-xs font-bold text-gray-400 uppercase">Amallar</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                    {% for product_in in product.products_in.all %}
+                    <tr class="hover:bg-gray-700/30 transition-colors">
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 py-1 bg-green-900/30 text-green-400 text-xs font-bold rounded">KIRIM</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-200">{{ product_in.reciewer }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-200 font-mono">{{ product_in.amount }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-emerald-400 font-semibold">{{ product_in.price }} $</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400 italic">{{ product_in.date|date:"d.m.Y" }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-200">---</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-end">
+                            <button class="text-red-400 hover:text-red-300 font-medium text-sm transition-colors">O'chirish</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                    {% for product_out in product.products_out.all %}
+                    <tr class="hover:bg-gray-700/30 transition-colors">
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 py-1 bg-red-900/30 text-red-400 text-xs font-bold rounded">CHIQIM</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-200">{{ product_out.customer }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-200 font-mono">{{ product_out.amount }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-red-400 font-semibold">{{ product_out.price }} $</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400 italic">{{ product_out.date|date:"d.m.Y" }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-amber-400 font-bold">{{ product_out.summa }} SO'M</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-end">
+                            <button class="text-red-400 hover:text-red-300 font-medium text-sm transition-colors">O'chirish</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-
-
-<div class="min-w-full">
-  <div class="border border-table-line overflow-x-auto [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-thumb]:rounded-none [&::-webkit-scrollbar-track]:bg-scrollbar-track [&::-webkit-scrollbar-thumb]:bg-scrollbar-thumb">
-    <table class="min-w-full divide-y divide-table-line">
-        <thead>
-                <tr>
-                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">reciewer</th>
-                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">amount</th>
-                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">price</th>
-                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">date</th>
-                    <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-muted-foreground-1 uppercase">EDIT</th>
-                </tr>
-
-        </thead>
-        <tbody class="divide-y divide-table-line">
-        {% for product_in in product.products_in.all %}
-
-
-            <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground">{{product_in.reciewer}}</a>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">{{product_in.amount}}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">{{product_in.price}}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">{{product_in.date}}</td>
-
-                <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                    <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg text-primary hover:text-primary-hover focus:outline-hidden focus:text-primary-focus disabled:opacity-50 disabled:pointer-events-none">Delete</button>
-                </td>
-            </tr>
-            
-            
-        </tbody>
-    {% endfor %}
-    </table>
-  </div>
-</div>
-
 {% endblock %}

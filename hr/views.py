@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from hr.models import Workers
 
 def all_hr(request):
@@ -6,5 +6,5 @@ def all_hr(request):
     return render(request, 'hodimlar_list.html', {'hamma_hodimlar': hamma_hodimlar})
 
 def hr_detail(request, id):
-    hodim = Workers.objects.get(id=id)
+    hodim = get_object_or_404(Workers, id=id)
     return render(request, 'hr_detail.html', {'hodim': hodim})
