@@ -27,7 +27,7 @@ class Workers(models.Model):
         return f"{self.first_name} {self.last_name} "
 
 class Salary(models.Model):
-    worker = models.ForeignKey('Workers', on_delete=models.CASCADE)
+    worker = models.ForeignKey('Workers', on_delete=models.CASCADE, related_name='salary')
     month = models.CharField(max_length=25, choices=MONTHS, default="1")
     salary_sum = models.CharField(max_length=50)
     date = models.DateField(default=timezone.now)

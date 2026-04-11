@@ -46,4 +46,62 @@
         </div>
     </div>
 </div>
+
+
+<div class="min-w-full">
+    <div class="border border-table-line overflow-x-auto [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-thumb]:rounded-none [&::-webkit-scrollbar-track]:bg-scrollbar-track [&::-webkit-scrollbar-thumb]:bg-scrollbar-thumb">
+        <table class="min-w-full divide-y divide-table-line">
+            <thead>
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">month</th>
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">summa</th>
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">date</th>
+                    <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-muted-foreground-1 uppercase">Actions</th>
+                </tr>
+
+            </thead>
+            <tbody class="divide-y divide-table-line">
+                {% for salary in hodim.salary.all %}
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground">
+                        {% if salary.month == '1' %}
+                            Yanvar
+                        {% elif salary.month == '2' %}
+                            Fevral
+                        {% elif salary.month == '3' %}
+                            Mart
+                        {% elif salary.month == '4' %}
+                            Aprel
+                        {% elif salary.month == '5' %}
+                            May
+                        {% elif salary.month == '6' %}
+                            Iyun
+                        {% elif salary.month == '7' %}
+                            Iyul
+                        {% elif salary.month == '8' %}
+                            Avgust
+                        {% elif salary.month == '9' %}
+                            Sentabr
+                        {% elif salary.month == '10' %}
+                            Oktabr
+                        {% elif salary.month == '11' %}
+                            Noyabr
+                        {% elif salary.month == '12' %}
+                            Dekabr
+                        {% endif %}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">{{salary.salary_sum}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">{{salary.date}}</td>
+                    
+                    <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                        <a href="{% url 'salary_delete' hodim.id salary.id %}" class="bg-red-500 text-white font-bold py-2 px-4 rounded">delete</a>
+                        <a href="{% url 'salary_update' hodim.id salary.id %}" class="bg-blue-500 text-white font-bold py-2 px-4 rounded">update</a>
+                    </td>
+                </tr>
+                
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock content %}
